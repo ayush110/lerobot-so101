@@ -1,0 +1,14 @@
+schema_version: 1
+dataset_id: example/so101-keyed-assembly
+revision: local-dev
+format: lerobot
+episodes: 0
+source: simulation
+observation_schema: so101.v1.Observation
+action_schema: so101.v1.ActionChunk
+calibration_version: example-v1
+splits:
+  train: []
+  validation: []
+  hidden_test: []
+checksums: {}

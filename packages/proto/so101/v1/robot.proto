@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package so101.v1;
+
+message CameraFrame {
+  string frame_id = 1;
+  string encoding = 2;
+  uint32 width = 3;
+  uint32 height = 4;
+  bytes data = 5;
+}
+
+message Observation {
+  uint32 schema_version = 1;
+  uint64 monotonic_timestamp_ns = 2;
+  uint64 sequence = 3;
+  repeated double joint_positions_rad = 4;
+  double gripper_position = 5;
+  repeated CameraFrame camera_frames = 6;
+  string calibration_version = 7;
+  string task_instruction = 8;
+}
+
+message JointTarget {
+  repeated double positions_rad = 1;
+}
+
+message ActionChunk {
+  uint32 schema_version = 1;
+  uint64 created_at_ns = 2;
+  uint64 valid_until_ns = 3;
+  uint64 period_ns = 4;
+  repeated JointTarget joint_targets = 5;
+  float confidence = 6;
+  string source_model = 7;
+}
+
+enum SafetyStatus {
+  SAFETY_STATUS_UNSPECIFIED = 0;
+  SAFETY_STATUS_ACCEPTED = 1;
+  SAFETY_STATUS_CLIPPED = 2;
+  SAFETY_STATUS_PAUSED = 3;
+  SAFETY_STATUS_REJECTED = 4;
+}
+
+message SafetyDecision {
+  uint32 schema_version = 1;
+  SafetyStatus status = 2;
+  string reason_code = 3;
+  string message = 4;
+  repeated JointTarget clipped_targets = 5;
+}

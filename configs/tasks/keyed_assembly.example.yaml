@@ -1,0 +1,16 @@
+schema_version: 1
+task_id: keyed-assembly-v1
+instruction: Assemble the keyed parts and place the result in the inspection fixture.
+seed: 0
+stages:
+  - retrieve
+  - orient_and_mate
+  - inspect
+metrics:
+  - stage_success
+  - full_success
+  - completion_time_s
+  - collision_count
+  - safety_stop_count
+  - recovery_count
+  - intervention_time_s

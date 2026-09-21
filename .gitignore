@@ -1,0 +1,49 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# C++ / CUDA
+build/
+cmake-build-*/
+*.dylib
+*.so
+*.o
+
+# Generated schemas
+generated/
+
+# Local data and model artifacts
+data/raw/**
+data/processed/**
+data/cache/**
+data/runs/**
+checkpoints/
+artifacts/
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.engine
+
+# Keep mount points visible
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/cache/.gitkeep
+!data/runs/.gitkeep
+
+# Secrets and host-specific configuration
+.env
+.env.*
+!.env.example
+configs/local/
+hardware/calibration/local/
+
+# Editors / macOS
+.DS_Store
+.idea/
+.vscode/
