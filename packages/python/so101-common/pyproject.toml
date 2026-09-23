@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "so101-common"
 version = "0.1.0"
 description = "Versioned Python contracts shared by SO-101 projects"
-requires-python = ">=3.11,<3.13"
+requires-python = ">=3.12,<3.13"
 dependencies = []
 
 [tool.hatch.build.targets.wheel]

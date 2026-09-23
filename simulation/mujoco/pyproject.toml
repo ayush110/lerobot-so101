@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "so101-mujoco"
+version = "0.1.0"
+description = "Deterministic MuJoCo digital twin and benchmark for SO-101"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "gymnasium>=1.0",
+    "mujoco>=3.2",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+lerobot = ["lerobot[dataset]>=0.6,<0.7"]
+
+[project.scripts]
+so101-mujoco-smoke = "so101_mujoco.cli:main"
+so101-mujoco-oracle = "so101_mujoco.oracle_cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/so101_mujoco"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"assets/so101" = "so101_mujoco/assets/so101"

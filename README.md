@@ -44,20 +44,35 @@ make doctor
 make test
 ```
 
-Python 3.11 or 3.12 is recommended for the robotics/ML environment. The system
-Python may be newer than PyTorch, LeRobot, or MuJoCo support.
+Python 3.12 is the supported robotics/ML environment. The system Python may be
+newer than PyTorch, LeRobot, or MuJoCo support.
 
 Create the Python environment with `uv` when installed:
 
 ```bash
 uv venv --python 3.12
 source .venv/bin/activate
-uv sync
+uv sync --all-packages --group robotics
 ```
 
 The old Atlas workspace has deliberately not been moved yet. See
 [`docs/migration-atlas.md`](docs/migration-atlas.md) for the staged migration
 that preserves the working arm setup.
+
+## Current milestone
+
+The first vertical slice is operational: the official SO-101 URDF compiles in
+MuJoCo, deterministic train/validation/hidden scenes reset and step through the
+Gymnasium API, and `make_env(...)` creates synchronous or asynchronous vector
+environments. The simulator models sampled friction, command delay, observation
+delay, and backlash, and packages its licensed URDF/STL assets in the wheel. A
+damped-least-squares IK oracle completes the three-stage benchmark and records
+state/action demonstrations directly into LeRobotDataset format.
+
+```bash
+uv run so101-mujoco-smoke --steps 20 --seed 2000
+uv run so101-mujoco-oracle evaluate --split hidden --episodes 25
+```
 
 ## Project lifecycle
 
